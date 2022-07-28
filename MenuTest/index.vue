@@ -37,7 +37,8 @@
           :index="menu.url.toString()"
           :route="{ path: menu.url }"
           @click="clickmenuitem"
-          ><span class="menufontcustom">{{ menu.name }}</span></el-menu-item>
+          ><span class="menufontcustom">{{ menu.name }}</span></el-menu-item
+        >
       </template>
     </el-menu>
   </div>
@@ -82,7 +83,7 @@ export default {
       //   this.$emit("changeActiveIndex", this.activeIndex);
       //   console.log(this.activeIndex);
     },
-    clickmenuitem(){
+    clickmenuitem() {
       this.activeIndex = this.$route.path;
     },
   },
@@ -91,8 +92,8 @@ export default {
       console.log(newvalue, oldvalue, "watch");
     },
     $route(to, from) {
-      console.log(to.path, from.path,"----");
-    //   this.activeIndex = to.path;
+      console.log(to.path, from.path, "----");
+      //   this.activeIndex = to.path;
       if (to.path.slice(12).indexOf("/") != -1) {
         this.activeIndex =
           to.path.slice(0, 12) +
@@ -130,7 +131,7 @@ export default {
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
-  color: rgb(255,255,255);
+  color: rgb(255, 255, 255);
 }
 
 .menufont:active {
@@ -153,16 +154,15 @@ export default {
 /deep/ .el-submenu.is-active {
   border-bottom: 2px rgb(24, 144, 255) solid;
 }
-.menu-item-custom.is-active{
+.menu-item-custom.is-active {
   border-bottom: 2px rgb(24, 144, 255) solid;
-  background-color: rgb(255,255,255) !important;
-  .menufontcustom{
-    color:rgb(24, 144, 255);
+  background-color: rgb(255, 255, 255) !important;
+  .menufontcustom {
+    color: rgb(24, 144, 255);
   }
-  
 }
- .menu-item-custom.is-active:hover{
-  background-color: rgba(255,255,255,1) !important;
+.menu-item-custom.is-active:hover {
+  background-color: rgba(255, 255, 255, 1) !important;
 }
 .menu-demo {
   background-color: rgba(0, 0, 0, 0) !important;
@@ -183,11 +183,10 @@ export default {
   background-color: rgba(0, 0, 0, 0) !important;
   border-left: 2px solid white;
 }
-.menu-item-custom:active{
-//   background-color: rgb(255,255,255) !important;
-  
+.menu-item-custom:active {
+  //   background-color: rgb(255,255,255) !important;
 }
-.menu-item-custom:hover{
+.menu-item-custom:hover {
   // background-color: rgba(255,255,255,1) !important;
 }
 /deep/ .el-menu-item:last-child {

@@ -2,7 +2,7 @@
   <div>
     <el-menu
       :default-active="activeIndex"
-      class="el-menu-demo"
+      class="menu-demo"
       mode="horizontal"
       @select="handleSelect"
       background-color="rgba(255,255,255,1)"
@@ -31,11 +31,12 @@
         </el-submenu>
 
         <el-menu-item
-          class="el-menu-item-custom"
+          class="menu-item-custom"
           v-if="menu.MenuItem.length == 0"
           :key="index"
           :index="menu.url.toString()"
           :route="{ path: menu.url }"
+          @click="clickmenuitem"
           ><span class="menufontcustom">{{ menu.name }}</span></el-menu-item>
       </template>
     </el-menu>
@@ -81,13 +82,16 @@ export default {
       //   this.$emit("changeActiveIndex", this.activeIndex);
       //   console.log(this.activeIndex);
     },
+    clickmenuitem(){
+      this.activeIndex = this.$route.path;
+    },
   },
   watch: {
     activeIndex: function (newvalue, oldvalue) {
       console.log(newvalue, oldvalue, "watch");
     },
     $route(to, from) {
-      console.log(to.path, from.path);
+      console.log(to.path, from.path,"----");
     //   this.activeIndex = to.path;
       if (to.path.slice(12).indexOf("/") != -1) {
         this.activeIndex =
@@ -101,14 +105,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-/deep/ .ant-menu-submenu {
-  // background-color: rgb(87, 65, 65) !important;
-  padding: 0 40px;
-}
 /deep/ .el-submenu {
   // background-color: rgb(87, 65, 65) !important;
   padding: 0 40px;
   border-left: 2px solid white;
+  height: 35px;
 }
 /deep/ .el-submenu.is-active {
   background-color: rgb(255, 255, 255);
@@ -137,8 +138,8 @@ export default {
 }
 
 /deep/ .el-menu--horizontal > .el-submenu .el-submenu__title {
-  height: 30px;
-  line-height: 30px;
+  height: 35px;
+  line-height: 35px;
   background-color: rgba(0, 0, 0, 0) !important;
   border-bottom-color: rgba(0, 0, 0, 0) !important;
 }
@@ -152,7 +153,7 @@ export default {
 /deep/ .el-submenu.is-active {
   border-bottom: 2px rgb(24, 144, 255) solid;
 }
-/deep/ .el-menu-item-custom.is-active{
+.menu-item-custom.is-active{
   border-bottom: 2px rgb(24, 144, 255) solid;
   background-color: rgb(255,255,255) !important;
   .menufontcustom{
@@ -160,13 +161,13 @@ export default {
   }
   
 }
-/deep/ .el-menu-item.is-active:hover{
-  background-color: rgb(255,255,255) !important;
+ .menu-item-custom.is-active:hover{
+  background-color: rgba(255,255,255,1) !important;
 }
-/deep/ .el-menu-demo {
+.menu-demo {
   background-color: rgba(0, 0, 0, 0) !important;
 }
-/deep/ .el-menu-item:hover {
+/deep/ .el-menu-item:not(.menu-item-custom):hover {
   background-color: rgba(152, 201, 247, 0.5) !important;
   .menufont {
     color: rgb(24, 144, 255);
@@ -175,20 +176,19 @@ export default {
 /deep/ .el-menu-item-group__title {
   padding: 0 !important;
 }
-/deep/ .el-menu-item-custom {
+.menu-item-custom {
   padding: 0 100px;
-  height: 30px;
+  height: 35px;
   line-height: 35px;
   background-color: rgba(0, 0, 0, 0) !important;
   border-left: 2px solid white;
-  
 }
-/deep/ .el-menu-item-custom:active{
+.menu-item-custom:active{
 //   background-color: rgb(255,255,255) !important;
   
 }
-/deep/ .el-menu-item-custom:hover{
-  background-color: rgba(152, 201, 247, 0) !important;
+.menu-item-custom:hover{
+  // background-color: rgba(255,255,255,1) !important;
 }
 /deep/ .el-menu-item:last-child {
   border-right: 2px solid white;
